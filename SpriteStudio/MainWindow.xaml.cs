@@ -12,13 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using Services = SpriteStudio.Base.Services;
-
 namespace SpriteStudio
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -28,7 +23,7 @@ namespace SpriteStudio
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            Services.SuperColor.Test();
+            ColorSpaces.SuperColor.Test();
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
@@ -56,7 +51,7 @@ namespace SpriteStudio
             
         		picture = new WriteableBitmap((BitmapSource)(new FormatConvertedBitmap(picture, PixelFormats.Bgra32, null, 0)));
                 picture.Lock();
-                Base.Services.SuperColor temp = new Base.Services.SuperColor(0,0,0);
+                ColorSpaces.SuperColor temp = new ColorSpaces.SuperColor(0,0,0);
                 for (int x = 0; x < picture.PixelWidth; x++)
                 {
                     for (int y = 0; y < picture.PixelHeight; y++)
