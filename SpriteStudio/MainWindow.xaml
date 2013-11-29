@@ -1,0 +1,132 @@
+<Window x:Class="SpriteStudio.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ad="http://schemas.xceed.com/wpf/xaml/avalondock"
+        Title="Sprite Studio" Height="550" Width="550" MinHeight="520" MinWidth="520" Icon="res/images/icons/Icon.ico" Background="#FF444444" UseLayoutRounding="True" Loaded="Window_Loaded">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/MenuStyles.xaml" />
+                <ResourceDictionary Source="Styles/ControlPalette.xaml" />
+                <ResourceDictionary Source="Styles/ButtonStyles.xaml" />
+                <ResourceDictionary Source="Styles/CheckBoxStyles.xaml" />
+                <ResourceDictionary Source="Styles/ComboBoxStyles.xaml" />
+                <ResourceDictionary Source="Styles/ScrollBarStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+                <!--<ImageBrush ImageSource="res/images/background.png" Stretch="None" AlignmentX="Left" AlignmentY="Top" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,8,8"/>-->
+                <SolidColorBrush Color="{DynamicResource spBackground}" />
+            </Grid.Background>
+        <Grid Background="{DynamicResource spOverlay}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="24" />
+                <RowDefinition Height="26" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="26" />
+            </Grid.RowDefinitions>
+
+
+
+            <Menu Grid.Row="0">
+                <MenuItem>
+                    <MenuItem.Header>
+                        <Label Foreground="#FFEEEEEE" Padding="0px" Margin="0px">
+                            File
+                        </Label>
+                    </MenuItem.Header>
+                    <MenuItem Header="Efe is very awesome" Click="MenuItem_Click"/>
+                    <MenuItem Header="Efe is awesome" />
+                    <MenuItem Header="Efe is awesome" />
+                    <MenuItem Header="Efe is awesome" />
+                    <MenuItem Header="Efe is awesome" />
+                </MenuItem>
+
+                <MenuItem>
+                    <MenuItem.Header>
+                        <Label Foreground="#FFEEEEEE" Padding="0px" Margin="0px">
+                            Edit
+                        </Label>
+                    </MenuItem.Header>
+                    <MenuItem Header="Efe is awesome right?" Foreground="#FFEEEEEE" Click="MenuItem_Click_1"/>
+                    <MenuItem Header="Efe is awesome" />
+                    <MenuItem Header="Efe is awesome" />
+                    <MenuItem Header="Efe is awesome" />
+                    <MenuItem Header="Efe is awesome" />
+                </MenuItem>
+
+                <MenuItem>
+                    <MenuItem.Header>
+                        <Label  Foreground="#FFEEEEEE" Padding="0px" Margin="0px">
+                            Project
+                        </Label>
+                    </MenuItem.Header>
+                    <MenuItem Header="Efe is awesome" />
+                    <MenuItem Header="Efe is awesome" />
+                    <MenuItem Header="Efe is awesome" />
+                    <MenuItem Header="Efe is awesome" />
+                    <MenuItem Header="Efe is awesome" />
+                </MenuItem>
+            </Menu>
+
+            <ToolBarPanel Grid.Row="1" Background="#00000000">
+            </ToolBarPanel>
+
+            <ad:DockingManager x:Name="dockManager" Grid.Row="2" Background="{x:Null}">
+                <ad:DockingManager.Theme>
+                    <ad:ExpressionDarkTheme />
+                </ad:DockingManager.Theme>
+                <ad:DockingManager.Resources>
+                    <Style TargetType="{x:Type ad:LayoutDocumentTabItem}">
+                        <Setter Property="MinWidth" Value="120" />
+                    </Style>
+                </ad:DockingManager.Resources>
+
+                <ad:LayoutRoot>
+                    <ad:LayoutPanel Orientation="Horizontal">
+                        <ad:LayoutAnchorablePane DockMinWidth="150">
+                            <ad:LayoutAnchorable x:Name="Window1"  ContentId="Window1CID" Title="Efe Is Awesome" ToolTip="Test" CanHide="False" CanClose="False" AutoHideMinWidth="150">
+                                <Label Content="Efe Is Awesome" />
+                            </ad:LayoutAnchorable>
+                            <ad:LayoutAnchorable x:Name="Window2"  ContentId="Window1CID" Title="Efe Is Awesome" ToolTip="Test" CanHide="False" CanClose="false" AutoHideMinWidth="150">
+                                <Label Content="Efe Is Awesome" />
+                            </ad:LayoutAnchorable>
+                        </ad:LayoutAnchorablePane>
+
+                        <ad:LayoutDocumentPaneGroup DockMinWidth="200">
+                            <ad:LayoutDocumentPane>
+                                <ad:LayoutDocument ContentId="Efe1" Title="Efe 1">
+                                    <StackPanel>
+                                        <Image x:Name="img" Margin="10" HorizontalAlignment="Stretch" />
+                                        <ComboBox x:Name="effectslist" MaxWidth="150">
+                                            <ComboBoxItem Content="Black and White" />
+                                        </ComboBox>
+                                        <Button MaxWidth="75" Click="Button_Click">Run Effect</Button>
+                                    </StackPanel>
+                                </ad:LayoutDocument>
+                                <ad:LayoutDocument ContentId="Efe2" Title="Efe 2">
+                                </ad:LayoutDocument>
+                            </ad:LayoutDocumentPane>
+                        </ad:LayoutDocumentPaneGroup>
+
+                        <ad:LayoutAnchorablePane DockMinWidth="150">
+                            <ad:LayoutAnchorable x:Name="Window3"  ContentId="Window1CID" Title="Efe Is Awesome" ToolTip="Test" CanHide="False" CanClose="False" AutoHideMinWidth="150">
+                                <Label Content="Efe Is Awesome" />
+                            </ad:LayoutAnchorable>
+                            <ad:LayoutAnchorable x:Name="Window4"  ContentId="Window1CID" Title="Efe Is Awesome" ToolTip="Test" CanHide="False" CanClose="False" AutoHideMinWidth="150">
+                                <Label Content="Efe Is Awesome" />
+                            </ad:LayoutAnchorable>
+                        </ad:LayoutAnchorablePane>
+                    </ad:LayoutPanel>
+
+                </ad:LayoutRoot>
+            </ad:DockingManager>
+
+            <StatusBar Grid.Row="3" Background="#FF484848" Foreground="White">
+                <StatusBarItem Content="Sprite Studio WIP"/>
+            </StatusBar>
+        </Grid>
+    </Grid>
+</Window>

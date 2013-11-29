@@ -1,0 +1,238 @@
+<Window x:Class="SpriteStudio.EffectHost"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="EffectHost" Height="580" Width="500" MinWidth="300" MinHeight="300" UseLayoutRounding="True" >
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/MenuStyles.xaml" />
+                <ResourceDictionary Source="Styles/ControlPalette.xaml" />
+                <ResourceDictionary Source="Styles/ButtonStyles.xaml" />
+                <ResourceDictionary Source="Styles/CheckBoxStyles.xaml" />
+                <ResourceDictionary Source="Styles/ComboBoxStyles.xaml" />
+                <ResourceDictionary Source="Styles/ScrollBarStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="{DynamicResource spBackground2}" Offset="0.25"/>
+            <GradientStop Color="{DynamicResource spBackground}" Offset="0.5"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid Background="{DynamicResource spOverlay}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="48px" />
+        </Grid.RowDefinitions>
+        <Grid Margin="8" Grid.Row="0">
+            <StackPanel>
+                <Label FontSize="32" Padding="10,0,2,6">
+                    <Label.Content>Name of Effect</Label.Content>
+                    <Label.Foreground>
+                        <SolidColorBrush Color="{DynamicResource spText}" />
+                    </Label.Foreground>
+                </Label>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="0.5*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Margin="5" Grid.Column="0" CornerRadius="4">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStopCollection>
+                                    <GradientStop Color="{DynamicResource spBackground2}" Offset="0" />
+                                    <GradientStop Color="{DynamicResource spBackground3}" Offset="1" />
+                                </GradientStopCollection>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <StackPanel>
+                            <Expander Margin="2,0" Collapsed="InputExpanded" Name="expanderInput" Expanded="InputExpanded">
+                                <Expander.Header>
+                                    <Label FontSize="18" Padding="8,5,5,5">
+                                        <Label.Content>
+                                            Input
+                                        </Label.Content>
+                                        <Label.Foreground>
+                                            <SolidColorBrush Color="{DynamicResource spText}" />
+                                        </Label.Foreground>
+                                    </Label>
+                                </Expander.Header>
+                                <StackPanel>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Content="Layer:" Grid.Column="0" Padding="12,5,5,5">
+                                            <Label.Foreground>
+                                                <SolidColorBrush Color="{DynamicResource spText}" />
+                                            </Label.Foreground>
+                                        </Label>
+                                        <ComboBox Grid.Column="1" Margin="5,5,8,5"></ComboBox>
+                                    </Grid>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Content="Selection:" Grid.Column="0" Padding="12,5,5,5">
+                                            <Label.Foreground>
+                                                <SolidColorBrush Color="{DynamicResource spText}" />
+                                            </Label.Foreground>
+                                        </Label>
+                                        <ComboBox Grid.Column="1" Margin="5,5,8,5" IsEnabled="False">
+                                            <ComboBoxItem Content="Current Selection" />
+                                            <ComboBoxItem Content="Inverse Selection" />
+                                            <ComboBoxItem Content="Whole Image" />
+                                        </ComboBox>
+                                    </Grid>
+                                </StackPanel>
+                            </Expander>
+                            <CheckBox Margin="8,2,2,2">
+                                <CheckBox.Content>
+                                    <Label FontSize="14">
+                                        <Label.Foreground>
+                                            <SolidColorBrush Color="{DynamicResource spText}" />
+                                        </Label.Foreground>
+                                        <Label.Content>Use Default</Label.Content>
+                                    </Label>
+                                </CheckBox.Content>
+                            </CheckBox>
+                        </StackPanel>
+                    </Border>
+                    <Border Margin="5" Grid.Column="1" CornerRadius="4">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStopCollection>
+                                    <GradientStop Color="{DynamicResource spBackground2}" Offset="0" />
+                                    <GradientStop Color="{DynamicResource spBackground3}" Offset="1" />
+                                </GradientStopCollection>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <StackPanel>
+                            <Expander Margin="2,0" Name="expanderOutput" Collapsed="OutputExpanded" Expanded="OutputExpanded">
+                                <Expander.Header>
+                                    <Label FontSize="18" Padding="8,5,5,5">
+                                        <Label.Content>
+                                            Output
+                                        </Label.Content>
+                                        <Label.Foreground>
+                                            <SolidColorBrush Color="{DynamicResource spText}" />
+                                        </Label.Foreground>
+                                    </Label>
+                                </Expander.Header>
+                                <StackPanel>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Content="Layer:" Grid.Column="0" Padding="12,5,5,5">
+                                            <Label.Foreground>
+                                                <SolidColorBrush Color="{DynamicResource spText}" />
+                                            </Label.Foreground>
+                                        </Label>
+                                        <ComboBox Grid.Column="1" Margin="5,5,8,5"></ComboBox>
+                                    </Grid>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Content="Selection:" Grid.Column="0" Padding="12,5,5,5">
+                                            <Label.Foreground>
+                                                <SolidColorBrush Color="{DynamicResource spText}" />
+                                            </Label.Foreground>
+                                        </Label>
+                                        <ComboBox Grid.Column="1" Margin="5,5,8,5">
+                                            <ComboBoxItem Content="Current Selection" />
+                                            <ComboBoxItem Content="Inverse Selection" />
+                                            <ComboBoxItem Content="Whole Image" />
+                                        </ComboBox>
+                                    </Grid>
+                                </StackPanel>
+                            </Expander>
+                            <CheckBox Margin="8,2,2,2">
+                                <CheckBox.Content>
+                                    <Label FontSize="14">
+                                        <Label.Foreground>
+                                            <SolidColorBrush Color="{DynamicResource spText}" />
+                                        </Label.Foreground>
+                                        <Label.Content>Use Default</Label.Content>
+                                    </Label>
+                                </CheckBox.Content>
+                            </CheckBox>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </StackPanel>
+        </Grid>
+
+        <ScrollViewer Margin="2,0" Grid.Row="1">
+            <StackPanel>
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+                <Button Margin="5" Content="Efe" MaxWidth="100" />
+            </StackPanel>
+        </ScrollViewer>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="8">
+            <Button Content="Cancel" Margin="4,0,8,0" Width="110"></Button>
+            <Button Content="OK" Margin="8,0,4,0" Width="100"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

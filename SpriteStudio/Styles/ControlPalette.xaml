@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="spBackgroundShade">#FF323232</Color>
+    <Color x:Key="spBackground_2">#FF292929</Color>
+    <Color x:Key="spBackground_1">#FF393939</Color>
+    <Color x:Key="spBackground">#FF494949</Color>
+    <Color x:Key="spBackground2">#FF595959</Color>
+    <Color x:Key="spBackground3">#FF696969</Color>
+    <Color x:Key="spBackground4">#FF797979</Color>
+    <Color x:Key="spText">#FFE2E2E2</Color>
+    <Color x:Key="spBorder">#FF999999</Color>
+
+
+    <LinearGradientBrush x:Key="spOverStateBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#2C8CBF" Offset="0" />
+        <GradientStop Color="#2793BF" Offset="0.5" />
+        <GradientStop Color="#2483BF" Offset="0.5001" />
+        <GradientStop Color="#2C8CBF" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="spPressedStateBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#0C6C9F" Offset="0" />
+        <GradientStop Color="#07739F" Offset="0.5" />
+        <GradientStop Color="#04639F" Offset="0.5001" />
+        <GradientStop Color="#0C6C9F" Offset="1" />
+    </LinearGradientBrush>
+
+
+    <ImageBrush x:Key="spOverlay" AlignmentX="Left" AlignmentY="Top" ImageSource="/res/images/overlay.png" Stretch="None" ViewportUnits="Absolute" Viewport="0,0,252,252" TileMode="Tile" />
+
+</ResourceDictionary>
