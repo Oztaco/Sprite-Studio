@@ -14,8 +14,6 @@ using System.Windows.Shapes;
 
 using Services = SpriteStudio.Base.Services;
 
-// Test
-
 namespace SpriteStudio
 {
     /// <summary>
