@@ -40,7 +40,7 @@ namespace SpriteStudio
 
 
 
-        WriteableBitmap picture = new WriteableBitmap(960,800,96,96,PixelFormats.Bgra32,null);
+        WriteableBitmap picture = new WriteableBitmap(960,600,96,96,PixelFormats.Bgra32,null);
 
 
 
@@ -48,6 +48,7 @@ namespace SpriteStudio
         // These should only be per-pixel, so no drawing shapes!
 
         public void BlackAndWhite() {
+            IPerPixelFilter b = new Filters.BlackAndWhite();
             unsafe
             {
                 picture = new WriteableBitmap((BitmapSource)(new FormatConvertedBitmap(picture, PixelFormats.Bgra32, null, 0)));
@@ -58,22 +59,28 @@ namespace SpriteStudio
                 byte* pBuff = (byte*)pBackBuffer.ToPointer();
 
                 short pieces = 4; // Red, Green, Blue, Alpha are each counted as a "piece"
-                int xPre = 0; // Just to stop repititive math to speed up a bit
-                int yPre = 0; // Same as above
+
+                int PreMath = 0,    //
+                    PreMath1 = 0,   //
+                    PreMath2 = 0,   // Just to stop repititive math to speed up a bit
+                    PreMath3 = 0;   //
 
                 for (int x = 0; x < picture.PixelWidth; x++)
                 {
                     for (int y = 0; y < picture.PixelHeight; y++)
                     {
-                        temp.SetRGBA(pBuff[4 * x + (y * picture.BackBufferStride)], pBuff[4 * x + (y * picture.BackBufferStride) + 1], pBuff[4 * x + (y * picture.BackBufferStride) + 2], pBuff[4 * x + (y * picture.BackBufferStride) + 3]);
-                        temp.Sat = 0;
-                        xPre = pieces * (short)x;
-                        yPre = y * picture.BackBufferStride;
-                        pBuff[xPre + (yPre)] = (byte)temp.Blue;
-                        pBuff[xPre + (yPre) + 1] = (byte)temp.Green;
-                        pBuff[xPre + (yPre) + 2] = (byte)temp.Red;
-                        pBuff[xPre + (yPre) + 3] = 255;
+                        PreMath = (pieces * x) + (y * picture.BackBufferStride);
+                        PreMath1 = PreMath + 1;
+                        PreMath2 = PreMath + 2;
+                        PreMath3 = PreMath + 3;
+                        temp.SetRGBA(pBuff[PreMath], pBuff[PreMath1], pBuff[PreMath2], pBuff[PreMath3]);
 
+                        b.OperatePixel(ref temp);
+
+                        pBuff[PreMath] = (byte)(temp.Blue);
+                        pBuff[PreMath1] = (byte)(temp.Green);
+                        pBuff[PreMath2] = (byte)(temp.Red);
+                        pBuff[PreMath3] = (byte)temp.Alpha;
                     }
                 }
                 picture.AddDirtyRect(new Int32Rect(0, 0, picture.PixelWidth, picture.PixelHeight));
@@ -85,37 +92,43 @@ namespace SpriteStudio
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            picture = new WriteableBitmap((BitmapSource)(new FormatConvertedBitmap(picture, PixelFormats.Bgra32, null, 0)));
+            //picture = new WriteableBitmap((BitmapSource)(new FormatConvertedBitmap(picture, PixelFormats.Bgra32, null, 0)));
             
-            //using (picture.GetBitmapContext())
-            //{
-            unsafe {
-            	picture.Lock();
-            	IntPtr pBackBuffer = picture.BackBuffer;
+            ////using (picture.GetBitmapContext())
+            ////{
+            //unsafe {
+            //    picture.Lock();
+            //    IntPtr pBackBuffer = picture.BackBuffer;
 
-                byte* pBuff = (byte*)pBackBuffer.ToPointer();
-                for (int x = 0; x < picture.PixelWidth; x++)
-                {
-                    for (int y = 0; y < picture.PixelHeight; y++)
-                    {
-                        pBuff[4 * x + (y * picture.BackBufferStride)] = (byte)((x / 960.0) * 255);
-                        pBuff[4 * x + (y * picture.BackBufferStride) + 1] = (byte)((y / 800.0) * 255);
-                        pBuff[4 * x + (y * picture.BackBufferStride) + 2] = (byte)(((x * y) / 960.0) * 255);
-                        pBuff[4 * x + (y * picture.BackBufferStride) + 3] = 200;
-                        //(byte)((x / 960.0) * 255), (byte)((y / 800.0) * 255), (byte)(((x * y) / 960.0) * 255)
-                    }
-                }
-                picture.AddDirtyRect(new Int32Rect(0,0,960,800));
-            picture.Unlock();
-            }
+            //    byte* pBuff = (byte*)pBackBuffer.ToPointer();
+            //    for (int x = 0; x < picture.PixelWidth; x++)
+            //    {
+            //        for (int y = 0; y < picture.PixelHeight; y++)
+            //        {
+            //            pBuff[4 * x + (y * picture.BackBufferStride)] = (byte)((x / 960.0) * 255);
+            //            pBuff[4 * x + (y * picture.BackBufferStride) + 1] = (byte)((y / 800.0) * 255);
+            //            pBuff[4 * x + (y * picture.BackBufferStride) + 2] = (byte)(((x * y) / 960.0) * 255);
+            //            pBuff[4 * x + (y * picture.BackBufferStride) + 3] = 200;
+            //            //(byte)((x / 960.0) * 255), (byte)((y / 800.0) * 255), (byte)(((x * y) / 960.0) * 255)
+            //        }
+            //    }
+            //    picture.AddDirtyRect(new Int32Rect(0,0,960,800));
+            //picture.Unlock();
             //}
-            picture = new WriteableBitmap((BitmapSource)(new FormatConvertedBitmap(picture, PixelFormats.Pbgra32, null, 0)));
-            WriteableBitmap temp = new WriteableBitmap(960,800,96,96,PixelFormats.Pbgra32, null);
-            temp.FillRectangle(20, 20, 940, 780, Colors.Beige);
-            temp.FillRectangle(60, 60, 900, 740, Colors.Green);
-            temp.FillRectangle(100, 100, 860, 700, Colors.Blue);
-            temp.FillRectangle(200, 200, 760, 600, Colors.Red);
-            picture.Blit(new Rect(0, 0, 960, 800), temp, new Rect(0, 0, 960, 800), WriteableBitmapExtensions.BlendMode.Multiply);
+            ////}
+            //picture = new WriteableBitmap((BitmapSource)(new FormatConvertedBitmap(picture, PixelFormats.Pbgra32, null, 0)));
+            //WriteableBitmap temp = new WriteableBitmap(960,800,96,96,PixelFormats.Pbgra32, null);
+            //temp.FillRectangle(20, 20, 940, 780, Colors.Beige);
+            //temp.FillRectangle(60, 60, 900, 740, Colors.Green);
+            //temp.FillRectangle(100, 100, 860, 700, Colors.Blue);
+            //temp.FillRectangle(200, 200, 760, 600, Colors.Red);
+            //picture.Blit(new Rect(0, 0, 960, 800), temp, new Rect(0, 0, 960, 800), WriteableBitmapExtensions.BlendMode.Multiply);
+            BitmapImage temp = new BitmapImage();
+            temp.BeginInit();
+            temp.CacheOption = BitmapCacheOption.OnLoad;
+            temp.UriSource = new Uri(@"C:\Users\Efe\Documents\Visual Studio 2012\Projects\SpriteStudio\SpriteStudio\res\test file.png", UriKind.Absolute);;
+            temp.EndInit();
+            picture = new WriteableBitmap(temp);
             img.Source = picture;
         }
 

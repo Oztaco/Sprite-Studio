@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
+using System.Drawing;
 
 namespace SpriteStudio
 {
@@ -192,11 +194,15 @@ namespace SpriteStudio
 
             public static void Test()
             {
-                //HSVColor a = new HSVColor(154, 71, 66, 72);
-                //RGBColor b = Converters.HSVtoRGB(a);
-                RGBColor a = new RGBColor(165, 75, 25);
-                SuperColor b = new SuperColor(a);
-                System.Windows.Forms.MessageBox.Show(string.Concat(b.Red, " , ", b.Green, " , ", b.Blue + " , ", b.Alpha));
+                HSVColor a = new HSVColor(154, 71, 66, 72);
+                a.Saturation = 0;
+                RGBColor b = Converters.HSVtoRGB(a);
+                a = Converters.RGBtoHSV(b);
+                //RGBColor a = new RGBColor(165, 75, 25);
+                //SuperColor b = new SuperColor(a);
+                System.Windows.Forms.MessageBox.Show(string.Concat(b.Red, " , ", b.Green, " , ", b.Blue + " , ", b.Alpha, "\n",
+                    a.Hue, " , ", a.Saturation, " , ", a.Value
+                    ));
             }
 
             public class Converters
@@ -209,7 +215,8 @@ namespace SpriteStudio
                     G = 0f;
                     B = 0f;
                     // Temporarily Convert to scale from 0-1
-                    thue = color.Hue / 360f;
+
+                    // thue moved for performance
                     tsat = color.Saturation / 100f;
                     tval = color.Value / 100f;
 
@@ -221,6 +228,8 @@ namespace SpriteStudio
                     }
                     else
                     {
+                        thue = color.Hue / 360f; // Moved here
+
                         float hextHue = thue * 6f; // Decimal value
                         if (hextHue == 6) hextHue = 0f;
                         int HexHue = (int)Math.Floor(hextHue); // Rounded value
