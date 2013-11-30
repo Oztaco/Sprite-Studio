@@ -48,33 +48,39 @@ namespace SpriteStudio
         // These should only be per-pixel, so no drawing shapes!
 
         public void BlackAndWhite() {
-            
-        		picture = new WriteableBitmap((BitmapSource)(new FormatConvertedBitmap(picture, PixelFormats.Bgra32, null, 0)));
+            unsafe
+            {
+                picture = new WriteableBitmap((BitmapSource)(new FormatConvertedBitmap(picture, PixelFormats.Bgra32, null, 0)));
                 picture.Lock();
-                ColorSpaces.SuperColor temp = new ColorSpaces.SuperColor(0,0,0);
+                ColorSpaces.SuperColor temp = new ColorSpaces.SuperColor(0, 0, 0);
+
+                IntPtr pBackBuffer = picture.BackBuffer;
+                byte* pBuff = (byte*)pBackBuffer.ToPointer();
+
+                short pieces = 4; // Red, Green, Blue, Alpha are each counted as a "piece"
+                int xPre = 0; // Just to stop repititive math to speed up a bit
+                int yPre = 0; // Same as above
+
                 for (int x = 0; x < picture.PixelWidth; x++)
                 {
                     for (int y = 0; y < picture.PixelHeight; y++)
                     {
-                        unsafe
-                        {
-                            IntPtr pBackBuffer = picture.BackBuffer;
+                        temp.SetRGBA(pBuff[4 * x + (y * picture.BackBufferStride)], pBuff[4 * x + (y * picture.BackBufferStride) + 1], pBuff[4 * x + (y * picture.BackBufferStride) + 2], pBuff[4 * x + (y * picture.BackBufferStride) + 3]);
+                        temp.Sat = 0;
+                        xPre = pieces * (short)x;
+                        yPre = y * picture.BackBufferStride;
+                        pBuff[xPre + (yPre)] = (byte)temp.Blue;
+                        pBuff[xPre + (yPre) + 1] = (byte)temp.Green;
+                        pBuff[xPre + (yPre) + 2] = (byte)temp.Red;
+                        pBuff[xPre + (yPre) + 3] = 255;
 
-                            byte* pBuff = (byte*)pBackBuffer.ToPointer();
-
-                            temp.SetRGBA(pBuff[4 * x + (y * picture.BackBufferStride)], pBuff[4 * x + (y * picture.BackBufferStride) + 1], pBuff[4 * x + (y * picture.BackBufferStride) + 2], pBuff[4 * x + (y * picture.BackBufferStride) + 3]);
-                            temp.Sat = 0;
-                            pBuff[4 * x + (y * picture.BackBufferStride)] = (byte)temp.Blue;
-                            pBuff[4 * x + (y * picture.BackBufferStride) + 1] = (byte)temp.Green;
-                            pBuff[4 * x + (y * picture.BackBufferStride) + 2] = (byte)temp.Red;
-                            pBuff[4 * x + (y * picture.BackBufferStride) + 3] = 255;
-                        }
                     }
                 }
                 picture.AddDirtyRect(new Int32Rect(0, 0, picture.PixelWidth, picture.PixelHeight));
                 picture.Unlock();
-           
-            img.Source = picture;
+
+                img.Source = picture;
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
