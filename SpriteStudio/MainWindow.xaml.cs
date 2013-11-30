@@ -77,9 +77,9 @@ namespace SpriteStudio
 
                         b.OperatePixel(ref temp);
 
-                        pBuff[PreMath] = (byte)(temp.Blue);
-                        pBuff[PreMath1] = (byte)(temp.Green);
-                        pBuff[PreMath2] = (byte)(temp.Red);
+                        pBuff[PreMath] = (byte)temp.Blue;
+                        pBuff[PreMath1] = (byte)temp.Green;
+                        pBuff[PreMath2] = (byte)temp.Red;
                         pBuff[PreMath3] = (byte)temp.Alpha;
                     }
                 }

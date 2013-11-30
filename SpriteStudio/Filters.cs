@@ -28,9 +28,7 @@ namespace SpriteStudio
             public void OperatePixel(ref ColorSpaces.SuperColor input)
             {
                 float vari = (input.Red + input.Blue + input.Green) / 3;
-                input.Red = vari;
-                input.Green = vari;
-                input.Blue = vari;
+                input.SetRGB(vari, vari, vari);
             }
 
             public FilterParameter<object>[] filterParamaters
