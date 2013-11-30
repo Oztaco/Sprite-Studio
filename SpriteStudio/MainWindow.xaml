@@ -6,12 +6,16 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles/MenuStyles.xaml" />
-                <ResourceDictionary Source="Styles/ControlPalette.xaml" />
-                <ResourceDictionary Source="Styles/ButtonStyles.xaml" />
-                <ResourceDictionary Source="Styles/CheckBoxStyles.xaml" />
-                <ResourceDictionary Source="Styles/ComboBoxStyles.xaml" />
-                <ResourceDictionary Source="Styles/ScrollBarStyles.xaml" />
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="Styles/MenuStyles.xaml" />
+                        <ResourceDictionary Source="Styles/ControlPalette.xaml" />
+                        <ResourceDictionary Source="Styles/ButtonStyles.xaml" />
+                        <ResourceDictionary Source="Styles/CheckBoxStyles.xaml" />
+                        <ResourceDictionary Source="Styles/ComboBoxStyles.xaml" />
+                        <ResourceDictionary Source="Styles/ScrollBarStyles.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>

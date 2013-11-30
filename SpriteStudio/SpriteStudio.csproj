@@ -98,6 +98,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="EffectHost Controls\NumberSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\ButtonStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -131,6 +135,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ColorSpaces.cs" />
+    <Compile Include="EffectHost Controls\NumberSlider.xaml.cs">
+      <DependentUpon>NumberSlider.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EffectHost.xaml.cs">
       <DependentUpon>EffectHost.xaml</DependentUpon>
     </Compile>

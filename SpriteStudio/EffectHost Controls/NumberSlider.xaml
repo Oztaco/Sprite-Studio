@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="SpriteStudio.EffectHost_Controls.NumberSlider"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="120" d:DesignWidth="400">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles/MenuStyles.xaml" />
+                <ResourceDictionary Source="../Styles/ControlPalette.xaml" />
+                <ResourceDictionary Source="../Styles/ButtonStyles.xaml" />
+                <ResourceDictionary Source="../Styles/CheckBoxStyles.xaml" />
+                <ResourceDictionary Source="../Styles/ComboBoxStyles.xaml" />
+                <ResourceDictionary Source="../Styles/ScrollBarStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="#444">
+        <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="85px" />
+                </Grid.ColumnDefinitions>
+                <Label Content="Param name" FontSize="14" FontWeight="Bold" Grid.Column="0">
+                    <Label.Foreground>
+                        <SolidColorBrush Color="{DynamicResource spText}" />
+                    </Label.Foreground>
+                </Label>
+                <Button Grid.Column="1" Margin="5,2,5,2" Content="Default">
+                    
+                </Button>
+            </Grid>
+            <Label Content="A reasonably short description goes here." FontSize="11">
+                <Label.Foreground>
+                    <SolidColorBrush Color="{DynamicResource spText}" />
+                </Label.Foreground>
+            </Label>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="70px" />
+                </Grid.ColumnDefinitions>
+                <Slider Margin="5,1,3,1" Grid.Column="0">
+                    
+                </Slider>
+                <TextBox Grid.Column="1" Margin="1,1,5,1">
+                    
+                </TextBox>
+            </Grid>
+            <Label Content="Some helpful hints would be nice." FontSize="11">
+                <Label.Foreground>
+                    <SolidColorBrush Color="{DynamicResource spText}" />
+                </Label.Foreground>
+            </Label>
+        </StackPanel>
+    </Grid>
+</UserControl>
