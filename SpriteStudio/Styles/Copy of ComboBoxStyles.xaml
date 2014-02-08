@@ -33,38 +33,9 @@
     <Color x:Key="comboBoxDisabledStateColor4">#595959</Color>
 
 
-    <!--Special stuff because Dynamic Resources suck-->
-    <LinearGradientBrush x:Key="spOverStateBrush" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#2C8CBF" Offset="0" />
-        <GradientStop Color="#2793BF" Offset="0.5" />
-        <GradientStop Color="#2483BF" Offset="0.5001" />
-        <GradientStop Color="#2C8CBF" Offset="1" />
-    </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="spPressedStateBrush" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#0C6C9F" Offset="0" />
-        <GradientStop Color="#07739F" Offset="0.5" />
-        <GradientStop Color="#04639F" Offset="0.5001" />
-        <GradientStop Color="#0C6C9F" Offset="1" />
-    </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="spTransparentBrush" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#00000000" Offset="0" />
-        <GradientStop Color="#00000000" Offset="0.5" />
-        <GradientStop Color="#00000000" Offset="0.5001" />
-        <GradientStop Color="#00000000" Offset="1" />
-    </LinearGradientBrush>
 
-    <Color x:Key="spBackgroundShade">#FF323232</Color>
-    <Color x:Key="spBackground_2">#FF292929</Color>
-    <Color x:Key="spBackground_1">#FF393939</Color>
-    <Color x:Key="spBackground">#FF494949</Color>
-    <Color x:Key="spBackground2">#FF595959</Color>
-    <Color x:Key="spBackground3">#FF696969</Color>
-    <Color x:Key="spBackground4">#FF797979</Color>
-    <Color x:Key="spText">#FFE2E2E2</Color>
-    <Color x:Key="spBorder">#FF999999</Color>
-    <!--End special stuff-->
 
 
 
@@ -324,10 +295,10 @@
                                 <Border x:Name="DropDownBorder"
                       BorderThickness="1">
                                     <Border.BorderBrush>
-                                        <SolidColorBrush Color="{StaticResource spBackground_1}" />
+                                        <SolidColorBrush Color="{DynamicResource spBackground_1}" />
                                     </Border.BorderBrush>
                                     <Border.Background>
-                                        <SolidColorBrush Color="{StaticResource spBackground_1}" />
+                                        <SolidColorBrush Color="{DynamicResource spBackground_1}" />
                                     </Border.Background>
                                 </Border>
                                 <ScrollViewer Margin="4,6,4,6"
@@ -378,7 +349,7 @@
                     <Border x:Name="Border"
                 Padding="2"
                 SnapsToDevicePixels="true"
-                Background="{StaticResource spTransparentBrush}"
+                Background="{DynamicResource spTransparentBrush}"
                 CornerRadius="3">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="SelectionStates">
@@ -410,10 +381,10 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter TargetName="Border" Property="Background" Value="{StaticResource spPressedStateBrush}" />
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource spPressedStateBrush}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Border" Property="Background" Value="{StaticResource spOverStateBrush}" />
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource spOverStateBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

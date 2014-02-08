@@ -1,8 +1,9 @@
-﻿<UserControl x:Class="SpriteStudio.EffectHost_Controls.NumberSlider"
+﻿<UserControl x:Class="SpriteStudio.EffectHostControls.NumberSlider"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:cc="clr-namespace:SpriteStudio.CommonControls"
              mc:Ignorable="d" 
              d:DesignHeight="120" d:DesignWidth="400">
     <UserControl.Resources>
@@ -17,14 +18,20 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Background="#444">
+    <Grid>
         <StackPanel>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="85px" />
                 </Grid.ColumnDefinitions>
-                <Label Content="Param name" FontSize="14" FontWeight="Bold" Grid.Column="0">
+                <Label Content="Param name" FontSize="16" Grid.Column="0">
+                    <Label.Background>
+                        <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                            <GradientStop Color="{DynamicResource spBackground2}" Offset="0"/>
+                            <GradientStop Color="#00999999" Offset="0.5"/>
+                        </LinearGradientBrush>
+                    </Label.Background>
                     <Label.Foreground>
                         <SolidColorBrush Color="{DynamicResource spText}" />
                     </Label.Foreground>
@@ -33,28 +40,28 @@
                     
                 </Button>
             </Grid>
-            <Label Content="A reasonably short description goes here." FontSize="11">
-                <Label.Foreground>
+            <TextBlock Text="A reasonably short description goes here. Make sure it's not too long, and it's not going on and on and on and on." FontSize="11" TextWrapping="Wrap" Padding="5,1,5,4">
+                <TextBlock.Foreground>
                     <SolidColorBrush Color="{DynamicResource spText}" />
-                </Label.Foreground>
-            </Label>
+                </TextBlock.Foreground>
+            </TextBlock>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="70px" />
+                    <ColumnDefinition Width="100" />
                 </Grid.ColumnDefinitions>
                 <Slider Margin="5,1,3,1" Grid.Column="0">
-                    
+
                 </Slider>
-                <TextBox Grid.Column="1" Margin="1,1,5,1">
-                    
-                </TextBox>
+                <cc:NumberTextBox Grid.Column="1" Margin="1,1,5,1">
+
+                </cc:NumberTextBox>
             </Grid>
-            <Label Content="Some helpful hints would be nice." FontSize="11">
-                <Label.Foreground>
+            <TextBlock Text="Some helpful hints would be nice. Some helpful hints would be nice. Some helpful hints would be nice." FontSize="11" TextWrapping="Wrap" Padding="5,1,5,4">
+                <TextBlock.Foreground>
                     <SolidColorBrush Color="{DynamicResource spText}" />
-                </Label.Foreground>
-            </Label>
+                </TextBlock.Foreground>
+            </TextBlock>
         </StackPanel>
     </Grid>
 </UserControl>

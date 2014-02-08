@@ -26,6 +26,13 @@
         <GradientStop Color="#0C6C9F" Offset="1" />
     </LinearGradientBrush>
 
+    <LinearGradientBrush x:Key="spTransparentBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#00000000" Offset="0" />
+        <GradientStop Color="#00000000" Offset="0.5" />
+        <GradientStop Color="#00000000" Offset="0.5001" />
+        <GradientStop Color="#00000000" Offset="1" />
+    </LinearGradientBrush>
+
 
     <ImageBrush x:Key="spOverlay" AlignmentX="Left" AlignmentY="Top" ImageSource="/res/images/overlay.png" Stretch="None" ViewportUnits="Absolute" Viewport="0,0,252,252" TileMode="Tile" />
 

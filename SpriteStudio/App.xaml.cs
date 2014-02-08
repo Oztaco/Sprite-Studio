@@ -12,5 +12,14 @@ namespace SpriteStudio
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            Welcome w = new Welcome();
+            MainWindow m = new MainWindow();
+            if (w.ShowDialog() == true) {
+                m.ShowDialog();
+            }
+            this.Shutdown();
+        }
     }
 }

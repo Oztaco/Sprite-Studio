@@ -27,7 +27,7 @@ namespace SpriteStudio
         {
             public void OperatePixel(ref ColorSpaces.SuperColor input)
             {
-                float vari = (input.Red + input.Blue + input.Green) / 3;
+                float vari = (input.Red + input.Blue + input.Green) / 3f;
                 input.SetRGB(vari, vari, vari);
             }
 

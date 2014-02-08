@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SpriteStudio.EffectHost_Controls
+namespace SpriteStudio.EffectHostControls
 {
     /// <summary>
     /// Interaction logic for NumberSlider.xaml

@@ -4,20 +4,12 @@
         xmlns:ad="http://schemas.xceed.com/wpf/xaml/avalondock"
         Title="Sprite Studio" Height="550" Width="550" MinHeight="520" MinWidth="520" Icon="res/images/icons/Icon.ico" Background="#FF444444" UseLayoutRounding="True" Loaded="Window_Loaded">
     <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary>
-                    <ResourceDictionary.MergedDictionaries>
-                        <ResourceDictionary Source="Styles/MenuStyles.xaml" />
-                        <ResourceDictionary Source="Styles/ControlPalette.xaml" />
-                        <ResourceDictionary Source="Styles/ButtonStyles.xaml" />
-                        <ResourceDictionary Source="Styles/CheckBoxStyles.xaml" />
-                        <ResourceDictionary Source="Styles/ComboBoxStyles.xaml" />
-                        <ResourceDictionary Source="Styles/ScrollBarStyles.xaml" />
-                    </ResourceDictionary.MergedDictionaries>
-                </ResourceDictionary>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+    	<ResourceDictionary>
+    		<ResourceDictionary.MergedDictionaries>
+            	<ResourceDictionary Source="Styles/MergedStyles.xaml" />
+            	<ResourceDictionary Source="Styles/MenuStyles.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
     </Window.Resources>
     <Grid>
         <Grid.Background>
@@ -41,7 +33,7 @@
                             File
                         </Label>
                     </MenuItem.Header>
-                    <MenuItem Header="Efe is very awesome" Click="MenuItem_Click"/>
+                    <MenuItem Header="Test" Click="MenuItem_Click"/>
                     <MenuItem Header="Efe is awesome" />
                     <MenuItem Header="Efe is awesome" />
                     <MenuItem Header="Efe is awesome" />
@@ -54,7 +46,7 @@
                             Edit
                         </Label>
                     </MenuItem.Header>
-                    <MenuItem Header="Efe is awesome right?" Foreground="#FFEEEEEE" Click="MenuItem_Click_1"/>
+                    <MenuItem Header="Effect Host" Click="MenuItem_Click_1"/>
                     <MenuItem Header="Efe is awesome" />
                     <MenuItem Header="Efe is awesome" />
                     <MenuItem Header="Efe is awesome" />
@@ -67,7 +59,7 @@
                             Project
                         </Label>
                     </MenuItem.Header>
-                    <MenuItem Header="Efe is awesome" />
+                    <MenuItem Header="Disable/Enable" Click="MenuItem_Click_2" />
                     <MenuItem Header="Efe is awesome" />
                     <MenuItem Header="Efe is awesome" />
                     <MenuItem Header="Efe is awesome" />
@@ -108,6 +100,14 @@
                                             <ComboBoxItem Content="Black and White" />
                                         </ComboBox>
                                         <Button MaxWidth="75" Click="Button_Click">Run Effect</Button>
+                                	<Slider Margin="2"></Slider>
+                                	<Slider Margin="2"></Slider>
+                                	<Slider Margin="2"></Slider>
+                                	<Slider Margin="2"></Slider>
+                                    <Slider Margin="2"></Slider>
+                                	<Slider Margin="2"></Slider>
+                                	<Slider Margin="2"></Slider>
+                                	<Slider Margin="2" Orientation="Vertical"></Slider>
                                     </StackPanel>
                                 </ad:LayoutDocument>
                                 <ad:LayoutDocument ContentId="Efe2" Title="Efe 2">
