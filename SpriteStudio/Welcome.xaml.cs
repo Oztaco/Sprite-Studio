@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Win32;
 using System.Xml;
+using System.Windows.Forms;
 
 namespace SpriteStudio
 {
@@ -75,17 +76,20 @@ namespace SpriteStudio
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog s = new SaveFileDialog();
-            s.DefaultExt = ".spi";
-            s.Filter = "Sprite Project Index |*.spi";
-            if (s.ShowDialog() == true) {
-                string name = new DirectoryInfo(System.IO.Path.GetDirectoryName(s.FileName)).Name + "  \\  " + System.IO.Path.GetFileName(s.FileName);
+            FolderBrowserDialog s = new FolderBrowserDialog();
+            string name = "";
+            // s.DefaultExt = ".spi";
+            // s.Filter = "Sprite Project Index |*.spi";
+            if (s.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                if (s.SelectedPath.Length > 35) name = "...\\ " + new DirectoryInfo(s.SelectedPath).Name;
+                else  name = s.SelectedPath;
+
                 fileTextBox.Text = name;
-                Path = s.FileName;
+                FolderPath = s.SelectedPath;
                 btnCreateProj.IsEnabled = true;
             }
         }
-        private string Path = "";
+        private string FolderPath = "";
 
         private void btnCreateProj_Click(object sender, RoutedEventArgs e)
         {
@@ -96,10 +100,15 @@ namespace SpriteStudio
 
         private void CreateNewProjectFile()
         {
+            CommonControls.AlertBox a = new CommonControls.AlertBox();
+            a.ShowDialog();
+            //System.Windows.Forms.DialogResult replace = System.Windows.Forms.MessageBox.Show("Note: If any files exi");
+
+            return;
             XmlWriterSettings xs = new XmlWriterSettings();
             xs.Indent = true;
             xs.IndentChars = "  ";
-            XmlWriter xw = XmlWriter.Create(Path, xs);
+            XmlWriter xw = XmlWriter.Create(FolderPath, xs);
 
             xw.WriteStartElement("SpriteStudio");
             xw.WriteStartElement("Meta");

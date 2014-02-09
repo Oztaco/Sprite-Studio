@@ -98,9 +98,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CommonControls\AlertBox.xaml.cs">
+      <DependentUpon>AlertBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Welcome.xaml.cs">
       <DependentUpon>Welcome.xaml</DependentUpon>
     </Compile>
+    <Page Include="CommonControls\AlertBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CommonControls\NumberTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
